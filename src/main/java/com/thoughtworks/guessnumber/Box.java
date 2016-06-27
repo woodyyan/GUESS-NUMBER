@@ -5,6 +5,14 @@ class Box {
     private int number;
     private Location location;
 
+    public int getNumber() {
+        return number;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
     Box(int number, Location location) {
         this.number = number;
         this.location = location;
