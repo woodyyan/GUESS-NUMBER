@@ -8,7 +8,8 @@ public class Application {
         String numbers = console.getAnswer();
         System.out.println("Answer is: " + numbers);
 
-        for (int i = 0; i < 6; i++) {
+        int maxTurn = 6;
+        for (int i = 0; i < maxTurn; i++) {
             java.util.Scanner sin = new java.util.Scanner(System.in);
             String numberString = sin.nextLine();
             BoxContainer answer = new BoxContainer(numberString);

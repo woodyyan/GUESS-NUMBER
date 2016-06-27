@@ -5,11 +5,11 @@ class Box {
     private int number;
     private Location location;
 
-    public int getNumber() {
+    int getNumber() {
         return number;
     }
 
-    public Location getLocation() {
+    Location getLocation() {
         return location;
     }
 

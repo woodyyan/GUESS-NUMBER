@@ -1,5 +1,5 @@
 package com.thoughtworks.guessnumber;
 
-public enum  CompareResult {
+enum  CompareResult {
     NumberAndLocation, NumberOnly, None
 }

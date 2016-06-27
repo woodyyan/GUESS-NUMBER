@@ -13,12 +13,12 @@ class BoxContainer {
         int thirdNumber = Integer.parseInt(numbers[2]);
         int fourthNumber = Integer.parseInt(numbers[3]);
 
-        Set<Box> boxes = new HashSet<>();
-        boxes.add(new Box(firstNumber, Location.First));
-        boxes.add(new Box(secondNumber, Location.Second));
-        boxes.add(new Box(thirdNumber, Location.Third));
-        boxes.add(new Box(fourthNumber, Location.Fourth));
-        this.boxes = boxes;
+        Set<Box> newBoxes = new HashSet<>();
+        newBoxes.add(new Box(firstNumber, Location.First));
+        newBoxes.add(new Box(secondNumber, Location.Second));
+        newBoxes.add(new Box(thirdNumber, Location.Third));
+        newBoxes.add(new Box(fourthNumber, Location.Fourth));
+        this.boxes = newBoxes;
     }
 
     Set<Box> getBoxes() {
@@ -33,7 +33,8 @@ class BoxContainer {
         Set<Box> otherBoxes = otherContainer.getBoxes();
         for (Box box : boxes) {
             for (Box otherBox : otherBoxes) {
-                if (box.getNumber() == otherBox.getNumber() && box.getLocation() == otherBox.getLocation()) {
+                if (box.getNumber() == otherBox.getNumber()
+                        && box.getLocation() == otherBox.getLocation()) {
                     aCount++;
                 } else if (box.getNumber() == otherBox.getNumber()) {
                     bCount++;
