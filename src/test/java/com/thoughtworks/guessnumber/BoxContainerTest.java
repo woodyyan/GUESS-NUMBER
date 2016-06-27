@@ -16,7 +16,7 @@ public class BoxContainerTest {
         otherBoxes.add(new Box(1, Location.First));
         otherBoxes.add(new Box(4, Location.Second));
         otherBoxes.add(new Box(5, Location.Third));
-        otherBoxes.add(new Box(6, Location.First));
+        otherBoxes.add(new Box(6, Location.Fourth));
         BoxContainer otherContainer = new BoxContainer(otherBoxes);
 
         //when
@@ -24,7 +24,7 @@ public class BoxContainerTest {
         boxes.add(new Box(1, Location.First));
         boxes.add(new Box(2, Location.Second));
         boxes.add(new Box(3, Location.Third));
-        boxes.add(new Box(4, Location.First));
+        boxes.add(new Box(4, Location.Fourth));
         BoxContainer boxContainer = new BoxContainer(boxes);
         String result = boxContainer.getResult(otherContainer);
 
