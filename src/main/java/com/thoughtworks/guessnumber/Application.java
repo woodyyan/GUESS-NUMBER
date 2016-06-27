@@ -4,13 +4,20 @@ public class Application {
 
     public static void main(String[] args) {
 
-        BoxContainer answer = new BoxContainer("1 2 3 4");
-
         GameConsole console = new GameConsole();
         String numbers = console.getAnswer();
-        System.out.println(numbers);
+        System.out.println("Answer is: " + numbers);
 
-        String result = console.guessNumber(answer);
-        System.out.println(result);
+        for (int i = 0; i < 6; i++) {
+            java.util.Scanner sin = new java.util.Scanner(System.in);
+            String numberString = sin.nextLine();
+            BoxContainer answer = new BoxContainer(numberString);
+            String result = console.guessNumber(answer);
+            System.out.println(result);
+            if (result.equals("4A0B")) {
+                System.out.println("You win!");
+                break;
+            }
+        }
     }
 }
