@@ -10,7 +10,7 @@ import static org.hamcrest.CoreMatchers.is;
 
 public class GameConsoleTest {
     @Test
-    public void should() {
+    public void shouldReturn4A0BWhenNumberIs1234() {
         //given
         Set<Box> boxes = new HashSet<>();
         boxes.add(new Box(1, Location.First));
@@ -27,9 +27,9 @@ public class GameConsoleTest {
         answerBoxes.add(new Box(4, Location.First));
         BoxContainer answer = new BoxContainer(answerBoxes);
         GameConsole gameConsole = new GameConsole(answer);
-        boolean result = gameConsole.isAnswer(boxContainer);
+        String result = gameConsole.getAnswer(boxContainer);
 
         //then
-        Assert.assertThat(result, is(true));
+        Assert.assertThat(result, is("4A0B"));
     }
 }

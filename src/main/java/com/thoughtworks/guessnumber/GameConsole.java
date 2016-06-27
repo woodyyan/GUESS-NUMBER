@@ -1,14 +1,16 @@
 package com.thoughtworks.guessnumber;
 
-public class GameConsole {
+class GameConsole {
 
     private final BoxContainer boxContainer;
 
-    public GameConsole(BoxContainer boxContainer){
+    GameConsole(BoxContainer boxContainer) {
         this.boxContainer = boxContainer;
     }
 
-    public boolean isAnswer(BoxContainer boxContainer) {
-        return false;
+    public String getAnswer(BoxContainer boxContainer) {
+        String result = this.boxContainer.getResult(boxContainer);
+
+        return result;
     }
 }
