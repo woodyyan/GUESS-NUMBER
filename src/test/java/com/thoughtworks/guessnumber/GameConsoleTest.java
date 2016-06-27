@@ -3,7 +3,7 @@ package com.thoughtworks.guessnumber;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 
 public class GameConsoleTest {
     @Test
@@ -16,7 +16,7 @@ public class GameConsoleTest {
         String result = gameConsole.guessNumber(answer);
 
         //then
-        Assert.assertThat(result, is("4A0B"));
+        Assert.assertThat(result, not("4A0B"));
     }
 
     @Test
@@ -29,6 +29,6 @@ public class GameConsoleTest {
 
 
         //then
-        Assert.assertThat(result, is("1234"));
+        Assert.assertThat(result, not("1234"));
     }
 }
