@@ -1,10 +1,23 @@
 package com.thoughtworks.guessnumber;
 
-public class Box {
-    public Box(int number, Location location) {
+class Box {
+
+    private int number;
+    private Location location;
+
+    Box(int number, Location location) {
+        this.number = number;
+        this.location = location;
     }
 
-    public CompareResult Compare(Box box) {
-        return null;
+    CompareResult Compare(Box box) {
+        CompareResult result = CompareResult.None;
+        if (number == box.number && location == box.location) {
+            result = CompareResult.NumberAndLocation;
+        } else if (number == box.number) {
+            result = CompareResult.NumberOnly;
+        }
+
+        return result;
     }
 }
