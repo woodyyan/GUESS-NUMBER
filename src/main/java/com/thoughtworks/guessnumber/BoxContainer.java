@@ -1,20 +1,31 @@
 package com.thoughtworks.guessnumber;
 
+import java.util.HashSet;
 import java.util.Set;
 
-public class BoxContainer {
+class BoxContainer {
     private Set<Box> boxes;
 
-    public BoxContainer(Set<Box> boxes) {
+    BoxContainer(String numbersString) {
+        String[] numbers = numbersString.split(" ");
+        int firstNumber = Integer.parseInt(numbers[0]);
+        int secondNumber = Integer.parseInt(numbers[1]);
+        int thirdNumber = Integer.parseInt(numbers[2]);
+        int fourthNumber = Integer.parseInt(numbers[3]);
 
+        Set<Box> boxes = new HashSet<>();
+        boxes.add(new Box(firstNumber, Location.First));
+        boxes.add(new Box(secondNumber, Location.Second));
+        boxes.add(new Box(thirdNumber, Location.Third));
+        boxes.add(new Box(fourthNumber, Location.Fourth));
         this.boxes = boxes;
     }
 
-    public Set<Box> getBoxes() {
+    Set<Box> getBoxes() {
         return boxes;
     }
 
-    public String getResult(BoxContainer otherContainer) {
+    String getResult(BoxContainer otherContainer) {
 
         int aCount = 0;
         int bCount = 0;
@@ -30,8 +41,6 @@ public class BoxContainer {
             }
         }
 
-        String result = aCount + "A" + bCount + "B";
-
-        return result;
+        return aCount + "A" + bCount + "B";
     }
 }
