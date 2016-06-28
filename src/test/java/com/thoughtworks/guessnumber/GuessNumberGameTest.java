@@ -114,4 +114,17 @@ public class GuessNumberGameTest {
         } catch (Exception ignored) {
         }
     }
+
+    @Test
+    public void should_throw_exception_when_input_number_is_more_than_9() {
+        //given
+        Integer[] numbers = {10, 2, 3, 4};
+
+        //when
+        try {
+            String result = guessNumberGame.getResult(numbers);
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+    }
 }

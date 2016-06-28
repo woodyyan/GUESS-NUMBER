@@ -30,14 +30,17 @@ class GuessNumberGame {
         return aNumberCount + "A" + bNumberCount + "B";
     }
 
-    private void checkNumberIsValid(Integer[] numbers) {
-        if (numbers.length != 4
-                || Arrays.stream(numbers).distinct().count() < 4) {
-            throw new InvalidParameterException("Numbers should be not duplicated.");
-        }
-    }
-
     void setAnswer(Integer... numbers) {
         this.answer = numbers;
+    }
+
+    private void checkNumberIsValid(Integer[] numbers) {
+        int maxNumber = 9;
+        int minNumber = 0;
+        if (numbers.length != 4
+                || Arrays.stream(numbers).distinct().count() < 4
+                || Arrays.stream(numbers).anyMatch(n -> n > maxNumber || n < minNumber)) {
+            throw new InvalidParameterException("Numbers should be not duplicated.");
+        }
     }
 }
