@@ -3,7 +3,7 @@ package com.thoughtworks.guessnumber;
 public class Application {
 
     public static void main(String[] args) {
-        Integer[] answer = GuessNumberGame.generateRandomNumber();
+        Integer[] answer = GuessNumberGame.generateRandomNumbers();
 
         GuessNumberGame game = new GuessNumberGame();
         game.setAnswer(answer);

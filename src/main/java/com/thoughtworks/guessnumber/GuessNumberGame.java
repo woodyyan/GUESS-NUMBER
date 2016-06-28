@@ -59,7 +59,7 @@ class GuessNumberGame {
         return result;
     }
 
-    static Integer[] generateRandomNumber() {
+    static Integer[] generateRandomNumbers() {
         Random random = new Random();
         List<Integer> list = new ArrayList<>();
         list.add(0);
