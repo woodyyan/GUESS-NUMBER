@@ -1,5 +1,6 @@
 package com.thoughtworks.guessnumber;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -86,5 +87,18 @@ public class GuessNumberGameTest {
 
         //then
         assertThat(result, is("0A4B"));
+    }
+
+    @Test
+    public void should_return_valid_input_when_input_number_is_1123() {
+        //given
+        Integer[] numbers = {1, 1, 2, 3};
+
+        //when
+        try {
+            String result = guessNumberGame.getResult(numbers);
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
     }
 }

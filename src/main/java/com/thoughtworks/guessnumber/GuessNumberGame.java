@@ -1,5 +1,6 @@
 package com.thoughtworks.guessnumber;
 
+import java.security.InvalidParameterException;
 import java.util.Arrays;
 
 class GuessNumberGame {
@@ -8,6 +9,10 @@ class GuessNumberGame {
     String getResult(Integer... numbers) {
         if (Arrays.equals(answer, numbers)) {
             return "4A0B";
+        }
+
+        if (Arrays.stream(numbers).distinct().count() < 4) {
+            throw new InvalidParameterException("Numbers should be not duplicated.");
         }
 
         int aNumberCount = 0;
