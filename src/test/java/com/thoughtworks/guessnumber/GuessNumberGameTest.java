@@ -55,7 +55,7 @@ public class GuessNumberGameTest {
     }
 
     @Test
-    public void shoud_return_1A2B_when_answer_is_1234_and_input_number_is_0324() {
+    public void should_return_1A2B_when_answer_is_1234_and_input_number_is_0324() {
         //given
         Integer[] numbers = {0, 3, 2, 4};
 
@@ -64,5 +64,17 @@ public class GuessNumberGameTest {
 
         //then
         assertThat(result, is("1A2B"));
+    }
+
+    @Test
+    public void should_return_0A0B_when_answer_is_1234_and_input_number_is_5678() {
+        //given
+        Integer[] numbers = {5, 6, 7, 8};
+
+        //when
+        String result = guessNumberGame.getResult(numbers);
+
+        //then
+        assertThat(result, is("0A0B"));
     }
 }
