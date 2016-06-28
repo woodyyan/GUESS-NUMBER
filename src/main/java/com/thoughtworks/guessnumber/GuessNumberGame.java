@@ -1,7 +1,10 @@
 package com.thoughtworks.guessnumber;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 class GuessNumberGame {
     private Integer[] answer;
@@ -38,6 +41,35 @@ class GuessNumberGame {
 
     void setAnswer(Integer... numbers) {
         this.answer = numbers;
+    }
+
+    static Integer[] generateRandomNumber() {
+        Random random = new Random();
+        List<Integer> list = new ArrayList<>();
+        list.add(0);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        list.add(7);
+        list.add(8);
+        list.add(9);
+
+        int index = random.nextInt(list.size());
+        int firstNumber = list.get(index);
+        list.remove(index);
+        index = random.nextInt(list.size());
+        int secondNumber = list.get(index);
+        list.remove(index);
+        index = random.nextInt(list.size());
+        int thirdNumber = list.get(index);
+        list.remove(index);
+        index = random.nextInt(list.size());
+        int fourthNumber = list.get(index);
+
+        return new Integer[]{firstNumber, secondNumber, thirdNumber, fourthNumber};
     }
 
     private void checkNumberIsValid(Integer[] numbers) {
