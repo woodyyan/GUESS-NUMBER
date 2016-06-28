@@ -1,7 +1,6 @@
 package com.thoughtworks.guessnumber;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -10,7 +9,7 @@ class GuessNumberGame {
     private Integer[] answer;
     private int answerCount = 0;
 
-    String getResult(Integer... numbers) {
+    String getResult(Integer... numbers) throws Exception{
         checkNumberIsValid(numbers);
 
         answerCount++;
@@ -45,26 +44,19 @@ class GuessNumberGame {
 
     static Integer[] generateRandomNumber() {
         Random random = new Random();
-        List<Integer> list = new ArrayList<>();
-        list.add(0);
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
-        list.add(6);
-        list.add(7);
-        list.add(8);
-        list.add(9);
+        List<Integer> list = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 
         int index = random.nextInt(list.size());
         int firstNumber = list.get(index);
+
         list.remove(index);
         index = random.nextInt(list.size());
         int secondNumber = list.get(index);
+
         list.remove(index);
         index = random.nextInt(list.size());
         int thirdNumber = list.get(index);
+
         list.remove(index);
         index = random.nextInt(list.size());
         int fourthNumber = list.get(index);
@@ -72,7 +64,7 @@ class GuessNumberGame {
         return new Integer[]{firstNumber, secondNumber, thirdNumber, fourthNumber};
     }
 
-    private void checkNumberIsValid(Integer[] numbers) {
+    private void checkNumberIsValid(Integer[] numbers) throws Exception {
         int maxNumber = 9;
         int minNumber = 0;
         if (numbers.length != 4
