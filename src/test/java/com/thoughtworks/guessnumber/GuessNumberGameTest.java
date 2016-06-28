@@ -9,11 +9,12 @@ public class GuessNumberGameTest {
     @Test
     public void should_return_1A0B_when_answer_is_1234_and_input_number_is_1567() {
         //given
-        String numbers = "1 5 6 7";
+        Integer[] numbers = {1, 5, 6, 7};
 
         //when
         GuessNumberGame guessNumberGame = new GuessNumberGame();
-        String result = null;
+        guessNumberGame.setAnswer(1, 2, 3, 4);
+        String result = guessNumberGame.getResult(numbers);
 
         //then
         Assert.assertThat(result, is("1A0B"));
