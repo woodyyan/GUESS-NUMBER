@@ -1,15 +1,26 @@
 package com.thoughtworks.guessnumber;
 
-import com.sun.xml.internal.xsom.util.DeferedCollection;
-
 import java.security.InvalidParameterException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 class GuessNumberGame {
     private final static int maxAnswerCount = 6;
+    private final static int gameNumberCount = 4;
 
+    private int answerCount;
     private Integer[] answer;
-    private int answerCount = 0;
+
+    GuessNumberGame() {
+        answerCount = 0;
+        answer = new Integer[]{};
+    }
+
+    void setAnswer(Integer... numbers) {
+        this.answer = numbers;
+    }
 
     GameResult getResult(Integer... numbers) throws Exception {
         checkNumberIsValid(numbers);
@@ -28,29 +39,24 @@ class GuessNumberGame {
             return result;
         }
 
-        int aNumberCount = 0;
-        int bNumberCount = 0;
-        int numberCount = 4;
-        for (int i = 0; i < numberCount; i++) {
+        int numberCorrectCount = 0;
+        int locationCorrectCount = 0;
+        for (int i = 0; i < gameNumberCount; i++) {
             if (numbers[i].equals(answer[i])) {
-                aNumberCount++;
+                numberCorrectCount++;
             } else {
                 Integer number = numbers[i];
                 Integer answerNumber = answer[i];
                 if (Arrays.stream(answer).filter(f -> !f.equals(answerNumber)).anyMatch(number::equals)) {
-                    bNumberCount++;
+                    locationCorrectCount++;
                 }
             }
         }
 
         result.setMessageType(MessageType.Pending);
-        result.setNumberCorrectCount(aNumberCount);
-        result.setLocationCorrectCount(bNumberCount);
+        result.setNumberCorrectCount(numberCorrectCount);
+        result.setLocationCorrectCount(locationCorrectCount);
         return result;
-    }
-
-    void setAnswer(Integer... numbers) {
-        this.answer = numbers;
     }
 
     static Integer[] generateRandomNumber() {
@@ -88,10 +94,12 @@ class GuessNumberGame {
     private void checkNumberIsValid(Integer[] numbers) throws Exception {
         int maxNumber = 9;
         int minNumber = 0;
-        if (numbers.length != 4
-                || Arrays.stream(numbers).distinct().count() < 4
-                || Arrays.stream(numbers).anyMatch(n -> n > maxNumber || n < minNumber)) {
-            throw new InvalidParameterException("Numbers should be not duplicated.");
+        if (numbers.length != gameNumberCount) {
+            throw new InvalidParameterException("Numbers' count should be " + gameNumberCount);
+        } else if (Arrays.stream(numbers).distinct().count() < gameNumberCount) {
+            throw new InvalidParameterException("Numbers should not be duplicated.");
+        } else if (Arrays.stream(numbers).anyMatch(n -> n > maxNumber || n < minNumber)) {
+            throw new InvalidParameterException("Numbers should from " + minNumber + " to " + maxNumber);
         }
     }
 }
