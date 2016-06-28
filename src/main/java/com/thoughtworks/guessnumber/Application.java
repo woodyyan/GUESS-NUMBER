@@ -14,13 +14,14 @@ public class Application {
         while (!isFinished) {
             Integer[] numbers = player.answer();
             try {
-                String result = game.getResult(numbers);
-                System.out.println(result);
-                if (result.equals("Failed") || result.equals("4A0B")) {
+                GameResult result = game.getResult(numbers);
+                System.out.println(result.toString());
+                if (!result.getMessageType().equals(MessageType.Pending)) {
                     isFinished = true;
                 }
             } catch (Exception ex) {
-                System.out.print(ex.getMessage());
+                isFinished = true;
+                System.out.println(ex.getMessage());
             }
         }
 

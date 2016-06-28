@@ -1,29 +1,37 @@
 package com.thoughtworks.guessnumber;
 
+import com.sun.xml.internal.xsom.util.DeferedCollection;
+
 import java.security.InvalidParameterException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 class GuessNumberGame {
+    private final static int maxAnswerCount = 6;
+
     private Integer[] answer;
     private int answerCount = 0;
 
-    String getResult(Integer... numbers) throws Exception{
+    GameResult getResult(Integer... numbers) throws Exception {
         checkNumberIsValid(numbers);
 
+        GameResult result = new GameResult();
+
         answerCount++;
-        if (answerCount > 6) {
-            return "Failed";
+
+        if (answerCount > maxAnswerCount) {
+            result.setMessageType(MessageType.Failed);
+            return result;
         }
 
         if (Arrays.equals(answer, numbers)) {
-            return "4A0B";
+            result.setMessageType(MessageType.Success);
+            return result;
         }
 
         int aNumberCount = 0;
         int bNumberCount = 0;
-        for (int i = 0; i < 4; i++) {
+        int numberCount = 4;
+        for (int i = 0; i < numberCount; i++) {
             if (numbers[i].equals(answer[i])) {
                 aNumberCount++;
             } else {
@@ -35,7 +43,10 @@ class GuessNumberGame {
             }
         }
 
-        return aNumberCount + "A" + bNumberCount + "B";
+        result.setMessageType(MessageType.Pending);
+        result.setNumberCorrectCount(aNumberCount);
+        result.setLocationCorrectCount(bNumberCount);
+        return result;
     }
 
     void setAnswer(Integer... numbers) {
@@ -44,7 +55,17 @@ class GuessNumberGame {
 
     static Integer[] generateRandomNumber() {
         Random random = new Random();
-        List<Integer> list = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        List<Integer> list = new ArrayList<>();
+        list.add(0);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        list.add(7);
+        list.add(8);
+        list.add(9);
 
         int index = random.nextInt(list.size());
         int firstNumber = list.get(index);
