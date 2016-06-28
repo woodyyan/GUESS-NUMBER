@@ -7,12 +7,10 @@ class GuessNumberGame {
     private Integer[] answer;
 
     String getResult(Integer... numbers) {
+        checkNumberIsValid(numbers);
+
         if (Arrays.equals(answer, numbers)) {
             return "4A0B";
-        }
-
-        if (Arrays.stream(numbers).distinct().count() < 4) {
-            throw new InvalidParameterException("Numbers should be not duplicated.");
         }
 
         int aNumberCount = 0;
@@ -30,6 +28,13 @@ class GuessNumberGame {
         }
 
         return aNumberCount + "A" + bNumberCount + "B";
+    }
+
+    private void checkNumberIsValid(Integer[] numbers) {
+        if (numbers.length != 4
+                || Arrays.stream(numbers).distinct().count() < 4) {
+            throw new InvalidParameterException("Numbers should be not duplicated.");
+        }
     }
 
     void setAnswer(Integer... numbers) {

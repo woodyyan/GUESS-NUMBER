@@ -90,9 +90,22 @@ public class GuessNumberGameTest {
     }
 
     @Test
-    public void should_return_valid_input_when_input_number_is_1123() {
+    public void should_throw_exception_when_input_number_is_1123() {
         //given
         Integer[] numbers = {1, 1, 2, 3};
+
+        //when
+        try {
+            String result = guessNumberGame.getResult(numbers);
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+    }
+
+    @Test
+    public void should_throw_exception_when_input_number_is_12() {
+        //given
+        Integer[] numbers = {1, 2};
 
         //when
         try {
