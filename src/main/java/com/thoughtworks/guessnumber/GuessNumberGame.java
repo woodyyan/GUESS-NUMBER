@@ -16,9 +16,9 @@ class GuessNumberGame {
             if (numbers[i].equals(answer[i])) {
                 aNumberCount++;
             } else if (i < 3) {
-                Integer[] newNumbers = Arrays.copyOfRange(answer, i + 1, 4);
                 Integer number = numbers[i];
-                if (Arrays.stream(newNumbers).anyMatch(number::equals)) {
+                Integer answerNumber = answer[i];
+                if (Arrays.stream(answer).filter(f -> !f.equals(answerNumber)).anyMatch(number::equals)) {
                     bNumberCount++;
                 }
             }

@@ -1,20 +1,29 @@
 package com.thoughtworks.guessnumber;
 
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GuessNumberGameTest {
+
+    private GuessNumberGame guessNumberGame;
+
+    @Before
+    public void setUp() {
+        guessNumberGame = new GuessNumberGame();
+        guessNumberGame.setAnswer(1, 2, 3, 4);
+    }
+
     @Test
     public void should_return_1A0B_when_answer_is_1234_and_input_number_is_1567() {
         //given
         Integer[] numbers = {1, 5, 6, 7};
 
         //when
-        GuessNumberGame guessNumberGame = new GuessNumberGame();
-        guessNumberGame.setAnswer(1, 2, 3, 4);
         String result = guessNumberGame.getResult(numbers);
 
         //then
@@ -27,8 +36,6 @@ public class GuessNumberGameTest {
         Integer[] numbers = {1, 2, 3, 4};
 
         //when
-        GuessNumberGame guessNumberGame = new GuessNumberGame();
-        guessNumberGame.setAnswer(1, 2, 3, 4);
         String result = guessNumberGame.getResult(numbers);
 
         //then
@@ -41,11 +48,21 @@ public class GuessNumberGameTest {
         Integer[] numbers = {2, 4, 7, 8};
 
         //when
-        GuessNumberGame guessNumberGame = new GuessNumberGame();
-        guessNumberGame.setAnswer(1, 2, 3, 4);
         String result = guessNumberGame.getResult(numbers);
 
         //then
         assertThat(result, is("0A2B"));
+    }
+
+    @Test
+    public void shoud_return_1A2B_when_answer_is_1234_and_input_number_is_0324() {
+        //given
+        Integer[] numbers = {0, 3, 2, 4};
+
+        //when
+        String result = guessNumberGame.getResult(numbers);
+
+        //then
+        assertThat(result, is("1A2B"));
     }
 }
