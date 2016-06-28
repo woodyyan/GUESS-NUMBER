@@ -5,9 +5,15 @@ import java.util.Arrays;
 
 class GuessNumberGame {
     private Integer[] answer;
+    private int answerCount = 0;
 
     String getResult(Integer... numbers) {
         checkNumberIsValid(numbers);
+
+        answerCount++;
+        if (answerCount > 6) {
+            return "Failed";
+        }
 
         if (Arrays.equals(answer, numbers)) {
             return "4A0B";

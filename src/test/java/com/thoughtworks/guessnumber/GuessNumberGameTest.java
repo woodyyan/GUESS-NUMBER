@@ -127,4 +127,19 @@ public class GuessNumberGameTest {
         } catch (Exception ignored) {
         }
     }
+
+    @Test
+    public void should_return_failed_when_input_count_is_more_than_6() {
+        //given
+        Integer[] numbers = {4, 3, 2, 1};
+
+        //when
+        String result = "";
+        for (int i = 0; i < 7; i++) {
+            result = guessNumberGame.getResult(numbers);
+        }
+
+        //then
+        assertThat(result, is("Failed"));
+    }
 }
