@@ -1,4 +1,4 @@
-package com.thoughtworks.guessnumber;
+package com.thoughtworks.old;
 
 import java.util.HashSet;
 import java.util.Set;

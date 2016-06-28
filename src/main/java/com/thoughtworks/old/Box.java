@@ -1,4 +1,4 @@
-package com.thoughtworks.guessnumber;
+package com.thoughtworks.old;
 
 class Box {
 

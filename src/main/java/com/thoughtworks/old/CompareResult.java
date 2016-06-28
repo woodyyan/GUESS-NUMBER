@@ -1,4 +1,4 @@
-package com.thoughtworks.guessnumber;
+package com.thoughtworks.old;
 
 enum  CompareResult {
     NumberAndLocation, NumberOnly, None
