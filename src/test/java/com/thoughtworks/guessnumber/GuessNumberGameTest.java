@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GuessNumberGameTest {
     @Test
@@ -17,7 +18,7 @@ public class GuessNumberGameTest {
         String result = guessNumberGame.getResult(numbers);
 
         //then
-        Assert.assertThat(result, is("1A0B"));
+        assertThat(result, is("1A0B"));
     }
 
     @Test
@@ -31,6 +32,20 @@ public class GuessNumberGameTest {
         String result = guessNumberGame.getResult(numbers);
 
         //then
-        Assert.assertThat(result, is("4A0B"));
+        assertThat(result, is("4A0B"));
+    }
+
+    @Test
+    public void should_return_0A2B_when_answer_is_1234_and_input_number_is_2478() {
+        //given
+        Integer[] numbers = {2, 4, 7, 8};
+
+        //when
+        GuessNumberGame guessNumberGame = new GuessNumberGame();
+        guessNumberGame.setAnswer(1, 2, 3, 4);
+        String result = guessNumberGame.getResult(numbers);
+
+        //then
+        assertThat(result, is("0A2B"));
     }
 }
