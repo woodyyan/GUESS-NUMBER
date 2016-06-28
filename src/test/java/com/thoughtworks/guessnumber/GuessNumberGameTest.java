@@ -1,8 +1,6 @@
 package com.thoughtworks.guessnumber;
 
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -76,5 +74,17 @@ public class GuessNumberGameTest {
 
         //then
         assertThat(result, is("0A0B"));
+    }
+
+    @Test
+    public void should_return_0A4B_when_answer_is_1234_and_input_number_is_4321() {
+        //given
+        Integer[] numbers = {4, 3, 2, 1};
+
+        //when
+        String result = guessNumberGame.getResult(numbers);
+
+        //then
+        assertThat(result, is("0A4B"));
     }
 }

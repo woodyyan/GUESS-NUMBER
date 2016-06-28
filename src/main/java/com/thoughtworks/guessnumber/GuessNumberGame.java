@@ -15,7 +15,7 @@ class GuessNumberGame {
         for (int i = 0; i < 4; i++) {
             if (numbers[i].equals(answer[i])) {
                 aNumberCount++;
-            } else if (i < 3) {
+            } else {
                 Integer number = numbers[i];
                 Integer answerNumber = answer[i];
                 if (Arrays.stream(answer).filter(f -> !f.equals(answerNumber)).anyMatch(number::equals)) {
