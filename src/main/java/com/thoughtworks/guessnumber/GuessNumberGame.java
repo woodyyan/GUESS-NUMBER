@@ -1,7 +1,7 @@
 package com.thoughtworks.guessnumber;
 
 class GuessNumberGame {
-    private final int maxAnswerCount = 6;
+    private final int maxAnswerCount = 8;
 
     private Answer answer;
     private GuessNumberGameValidator validator;
