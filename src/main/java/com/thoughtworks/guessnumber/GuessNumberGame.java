@@ -1,7 +1,7 @@
 package com.thoughtworks.guessnumber;
 
 class GuessNumberGame {
-    private final static int maxAnswerCount = 6;
+    private final int maxAnswerCount = 6;
 
     private Answer answer;
     private GuessNumberGameValidator validator;
@@ -32,8 +32,7 @@ class GuessNumberGame {
 
     private void printGameResult(GameResult result) {
         String answerString = "";
-        for (Integer number :
-                answer.getNumbers()) {
+        for (Integer number : answer.getNumbers()) {
             answerString += number;
         }
         String message = result.getIsSuccessful() ? "Game over, you win!" : "Game over, you lose! Answer is " + answerString;

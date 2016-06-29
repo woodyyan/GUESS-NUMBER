@@ -19,7 +19,7 @@ class Answer {
         int numberCorrectCount = 0;
         int locationCorrectCount = 0;
         Integer[] anotherNumbers = anotherAnswer.getNumbers();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < numbers.length; i++) {
             if (numbers[i].equals(anotherNumbers[i])) {
                 numberCorrectCount++;
             } else {
@@ -33,7 +33,7 @@ class Answer {
 
         result.setNumberCorrectCount(numberCorrectCount);
         result.setLocationCorrectCount(locationCorrectCount);
-        if(numberCorrectCount == 4){
+        if (numberCorrectCount == numbers.length) {
             result.setIsSuccessful(true);
         }
 
