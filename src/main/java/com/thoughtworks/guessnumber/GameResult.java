@@ -2,9 +2,18 @@ package com.thoughtworks.guessnumber;
 
 class GameResult {
 
-    private MessageType messageType;
     private int numberCorrectCount;
     private int locationCorrectCount;
+
+    private boolean isSuccessful;
+
+    boolean getIsSuccessful() {
+        return isSuccessful;
+    }
+
+    void setIsSuccessful(boolean successful) {
+        isSuccessful = successful;
+    }
 
     void setNumberCorrectCount(int numberCorrectCount) {
         this.numberCorrectCount = numberCorrectCount;
@@ -14,28 +23,7 @@ class GameResult {
         this.locationCorrectCount = locationCorrectCount;
     }
 
-    MessageType getMessageType() {
-        return messageType;
-    }
-
-    void setMessageType(MessageType messageType) {
-        this.messageType = messageType;
-    }
-
-    @Override
-    public String toString() {
-        String result = "";
-        switch (messageType) {
-            case Success:
-                result = "Successful!";
-                break;
-            case Failed:
-                result = "Failed!";
-                break;
-            case Pending:
-                result = numberCorrectCount + "A" + locationCorrectCount + "B";
-                break;
-        }
-        return result;
+    String getMessage() {
+        return numberCorrectCount + "A" + locationCorrectCount + "B";
     }
 }

@@ -12,9 +12,9 @@ public class PlayerTest {
         Player player = new Player();
 
         //when
-        Integer[] result = player.guess();
+        Answer answer = player.guess();
 
         //then
-        assertThat(result.length, is(4));
+        assertThat(answer.getNumbers().length, is(4));
     }
 }

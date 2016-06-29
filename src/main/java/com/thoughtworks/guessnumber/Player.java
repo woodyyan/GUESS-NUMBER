@@ -3,7 +3,7 @@ package com.thoughtworks.guessnumber;
 import java.util.*;
 
 class Player {
-    Integer[] guess() {
+    Answer guess() {
 
         Scanner scanner = new Scanner(System.in);
         String numbersString = scanner.nextLine();
@@ -15,6 +15,6 @@ class Player {
             result.add(number);
         }
 
-        return result.toArray(new Integer[result.size()]);
+        return new Answer(result.toArray(new Integer[result.size()]));
     }
 }
