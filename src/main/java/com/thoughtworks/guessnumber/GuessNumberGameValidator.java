@@ -27,6 +27,6 @@ class GuessNumberGameValidator extends NumberValidator {
     }
 
     private boolean checkNumbersAreExceed(Integer... numbers) {
-        return Arrays.stream(numbers).anyMatch(n -> n <= maxNumber && n >= minNumber);
+        return Arrays.stream(numbers).allMatch(n -> n <= maxNumber && n >= minNumber);
     }
 }
