@@ -12,9 +12,9 @@ public class Application {
 
         boolean isFinished = false;
         while (!isFinished) {
-            Integer[] numbers = player.answer();
+            Integer[] numbers = player.guess();
             try {
-                GameResult result = game.getResult(numbers);
+                GameResult result = game.play(numbers);
                 System.out.println(result.toString());
                 if (!result.getMessageType().equals(MessageType.Pending)) {
                     isFinished = true;

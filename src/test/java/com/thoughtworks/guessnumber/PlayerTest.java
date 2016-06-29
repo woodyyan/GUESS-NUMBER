@@ -12,7 +12,7 @@ public class PlayerTest {
         Player player = new Player();
 
         //when
-        Integer[] result = player.answer();
+        Integer[] result = player.guess();
 
         //then
         assertThat(result.length, is(4));

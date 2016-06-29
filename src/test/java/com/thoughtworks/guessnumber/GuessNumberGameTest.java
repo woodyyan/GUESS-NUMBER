@@ -25,7 +25,7 @@ public class GuessNumberGameTest {
         //when
         GameResult result = new GameResult();
         try {
-            result = guessNumberGame.getResult(numbers);
+            result = guessNumberGame.play(numbers);
         } catch (Exception ignored) {
 
         }
@@ -35,17 +35,12 @@ public class GuessNumberGameTest {
     }
 
     @Test
-    public void should_return_4A0B_when_answer_is_1234_and_input_number_is_1234() {
+    public void should_return_4A0B_when_answer_is_1234_and_input_number_is_1234() throws Exception {
         //given
         Integer[] numbers = {1, 2, 3, 4};
 
         //when
-        GameResult result = new GameResult();
-        try {
-            result = guessNumberGame.getResult(numbers);
-        } catch (Exception ignored) {
-
-        }
+        GameResult result = guessNumberGame.play(numbers);
 
         //then
         assertThat(result.toString(), is("Successful!"));
@@ -59,7 +54,7 @@ public class GuessNumberGameTest {
         //when
         GameResult result = new GameResult();
         try {
-            result = guessNumberGame.getResult(numbers);
+            result = guessNumberGame.play(numbers);
         } catch (Exception ignored) {
 
         }
@@ -76,7 +71,7 @@ public class GuessNumberGameTest {
         //when
         GameResult result = new GameResult();
         try {
-            result = guessNumberGame.getResult(numbers);
+            result = guessNumberGame.play(numbers);
         } catch (Exception ignored) {
 
         }
@@ -93,7 +88,7 @@ public class GuessNumberGameTest {
         //when
         GameResult result = new GameResult();
         try {
-            result = guessNumberGame.getResult(numbers);
+            result = guessNumberGame.play(numbers);
         } catch (Exception ignored) {
 
         }
@@ -110,7 +105,7 @@ public class GuessNumberGameTest {
         //when
         GameResult result = new GameResult();
         try {
-            result = guessNumberGame.getResult(numbers);
+            result = guessNumberGame.play(numbers);
         } catch (Exception ignored) {
 
         }
@@ -126,7 +121,7 @@ public class GuessNumberGameTest {
 
         //when
         try {
-            GameResult result = guessNumberGame.getResult(numbers);
+            GameResult result = guessNumberGame.play(numbers);
             Assert.fail();
         } catch (Exception ignored) {
         }
@@ -139,7 +134,7 @@ public class GuessNumberGameTest {
 
         //when
         try {
-            GameResult result = guessNumberGame.getResult(numbers);
+            GameResult result = guessNumberGame.play(numbers);
             Assert.fail();
         } catch (Exception ignored) {
         }
@@ -152,7 +147,7 @@ public class GuessNumberGameTest {
 
         //when
         try {
-            GameResult result = guessNumberGame.getResult(numbers);
+            GameResult result = guessNumberGame.play(numbers);
             Assert.fail();
         } catch (Exception ignored) {
         }
@@ -167,7 +162,7 @@ public class GuessNumberGameTest {
         GameResult result = new GameResult();
         for (int i = 0; i < 7; i++) {
             try {
-                result = guessNumberGame.getResult(numbers);
+                result = guessNumberGame.play(numbers);
             } catch (Exception ignored) {
 
             }

@@ -22,7 +22,7 @@ class GuessNumberGame {
         this.answer = numbers;
     }
 
-    GameResult getResult(Integer... numbers) throws Exception {
+    GameResult play(Integer... numbers) throws Exception {
         checkNumberIsValid(numbers);
 
         GameResult result = new GameResult();
