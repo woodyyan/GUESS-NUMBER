@@ -9,7 +9,8 @@ class Player {
         String numbersString = scanner.nextLine();
 
         List<Integer> result = new ArrayList<>();
-        String[] numbers = numbersString.split(" ");
+        String spaceChar = " ";
+        String[] numbers = numbersString.split(spaceChar);
         for (String stringNumber : numbers) {
             int number = Integer.parseInt(stringNumber);
             result.add(number);

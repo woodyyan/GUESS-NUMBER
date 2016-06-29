@@ -1,6 +1,5 @@
 package com.thoughtworks.guessnumber;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,11 +8,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GuessNumberGameTest {
 
-    private GuessNumberGame guessNumberGame;
+    private Answer answer;
 
     @Before
     public void setUp() {
-        guessNumberGame = new GuessNumberGame();
+        answer = new Answer(1, 2, 3, 4);
     }
 
     @Test
@@ -22,26 +21,22 @@ public class GuessNumberGameTest {
         Integer[] numbers = {1, 5, 6, 7};
 
         //when
-        Player player = new Player();
-        Answer playerAnswer = player.guess();
-        GameResult result = new GameResult();
-        guessNumberGame.start(player);
+        GameResult result = answer.compareTo(new Answer(numbers));
 
         //then
-        assertThat(result.toString(), is("1A0B"));
+        assertThat(result.getMessage(), is("1A0B"));
     }
 
     @Test
-    public void should_return_4A0B_when_answer_is_1234_and_input_number_is_1234() throws Exception {
+    public void should_return_4A0B_when_answer_is_1234_and_input_number_is_1234() {
         //given
         Integer[] numbers = {1, 2, 3, 4};
 
         //when
-        Player player = new Player();
-        GameResult result = new GameResult();
+        GameResult result = answer.compareTo(new Answer(numbers));
 
         //then
-        assertThat(result.toString(), is("Successful!"));
+        assertThat(result.getMessage(), is("4A0B"));
     }
 
     @Test
@@ -50,10 +45,10 @@ public class GuessNumberGameTest {
         Integer[] numbers = {2, 4, 7, 8};
 
         //when
-        GameResult result = new GameResult();
+        GameResult result = answer.compareTo(new Answer(numbers));
 
         //then
-        assertThat(result.toString(), is("0A2B"));
+        assertThat(result.getMessage(), is("0A2B"));
     }
 
     @Test
@@ -62,10 +57,10 @@ public class GuessNumberGameTest {
         Integer[] numbers = {0, 3, 2, 4};
 
         //when
-        GameResult result = new GameResult();
+        GameResult result = answer.compareTo(new Answer(numbers));
 
         //then
-        assertThat(result.toString(), is("1A2B"));
+        assertThat(result.getMessage(), is("1A2B"));
     }
 
     @Test
@@ -74,10 +69,10 @@ public class GuessNumberGameTest {
         Integer[] numbers = {5, 6, 7, 8};
 
         //when
-        GameResult result = new GameResult();
+        GameResult result = answer.compareTo(new Answer(numbers));
 
         //then
-        assertThat(result.toString(), is("0A0B"));
+        assertThat(result.getMessage(), is("0A0B"));
     }
 
     @Test
@@ -86,47 +81,48 @@ public class GuessNumberGameTest {
         Integer[] numbers = {4, 3, 2, 1};
 
         //when
-        GameResult result = new GameResult();
+        GameResult result = answer.compareTo(new Answer(numbers));
 
         //then
-        assertThat(result.toString(), is("0A4B"));
+        assertThat(result.getMessage(), is("0A4B"));
     }
 
     @Test
-    public void should_throw_exception_when_input_number_is_1123() {
+    public void should_return_false_when_input_number_is_1123() {
         //given
         Integer[] numbers = {1, 1, 2, 3};
 
         //when
+        NumberValidator numberValidator = new GuessNumberGameValidator();
+        boolean isValid = numberValidator.verify(numbers);
 
+        //then
+        assertThat(isValid, is(false));
     }
 
     @Test
-    public void should_throw_exception_when_input_number_is_12() {
+    public void should_return_false_when_input_number_is_12() {
         //given
         Integer[] numbers = {1, 2};
 
         //when
+        NumberValidator numberValidator = new GuessNumberGameValidator();
+        boolean isValid = numberValidator.verify(numbers);
+
+        //then
+        assertThat(isValid, is(false));
     }
 
     @Test
-    public void should_throw_exception_when_input_number_is_more_than_9() {
+    public void should_return_false_when_input_number_is_more_than_9() {
         //given
         Integer[] numbers = {10, 2, 3, 4};
 
         //when
-
-    }
-
-    @Test
-    public void should_return_failed_when_input_count_is_more_than_6() {
-        //given
-        Integer[] numbers = {4, 3, 2, 1};
-
-        //when
-        GameResult result = new GameResult();
+        NumberValidator numberValidator = new GuessNumberGameValidator();
+        boolean isValid = numberValidator.verify(numbers);
 
         //then
-        assertThat(result.toString(), is("Failed!"));
+        assertThat(isValid, is(false));
     }
 }
