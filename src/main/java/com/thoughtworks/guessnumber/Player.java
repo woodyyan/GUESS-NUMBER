@@ -1,16 +1,18 @@
 package com.thoughtworks.guessnumber;
 
+import com.thoughtworks.input.InputConsole;
+
 import java.util.*;
 
 class Player {
     Answer guess() {
 
-        Scanner scanner = new Scanner(System.in);
-        String numbersString = scanner.nextLine();
+        InputConsole console = new InputConsole();
+        String numberString = console.getInputString();
 
         List<Integer> result = new ArrayList<>();
         String spaceChar = " ";
-        String[] numbers = numbersString.split(spaceChar);
+        String[] numbers = numberString.split(spaceChar);
         for (String stringNumber : numbers) {
             int number = Integer.parseInt(stringNumber);
             result.add(number);
