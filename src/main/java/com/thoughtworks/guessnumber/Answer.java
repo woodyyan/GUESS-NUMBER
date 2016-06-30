@@ -1,6 +1,12 @@
 package com.thoughtworks.guessnumber;
 
+import com.google.common.collect.ImmutableCollection;
+import com.google.common.collect.Range;
+import com.google.common.collect.UnmodifiableIterator;
+
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 
 class Answer {
     private Integer[] numbers;
@@ -15,6 +21,7 @@ class Answer {
 
     GameResult compareTo(Answer anotherAnswer) {
         GameResult result = new GameResult();
+
 
         int numberCorrectCount = 0;
         int locationCorrectCount = 0;

@@ -1,29 +1,20 @@
 package com.thoughtworks.validator;
 
-import java.util.Arrays;
+import com.google.common.collect.Range;
 
-public class GuessNumberGameValidator extends NumberValidator {
+import java.util.Set;
+
+public class GuessNumberGameValidator {
     public final static int GAME_NUMBER_COUNT = 4;
 
-    private final static int maxNumber = 9;
-    private final static int minNumber = 0;
+    private final static int MaxNumber = 9;
+    private final static int MinNumber = 0;
 
-    @Override
-    public boolean verify(Integer... numbers) {
-        return checkNumberCountIsEqualGameNumberCount(numbers)
-                && checkNumberCountIsNotDuplicated(numbers)
-                && checkNumbersAreExceed(numbers);
-    }
+    boolean verify(Set<Integer> numbers) {
 
-    private boolean checkNumberCountIsEqualGameNumberCount(Integer... numbers) {
-        return numbers.length == GAME_NUMBER_COUNT;
-    }
-
-    private boolean checkNumberCountIsNotDuplicated(Integer... numbers) {
-        return Arrays.stream(numbers).distinct().count() == GAME_NUMBER_COUNT;
-    }
-
-    private boolean checkNumbersAreExceed(Integer... numbers) {
-        return Arrays.stream(numbers).allMatch(n -> n <= maxNumber && n >= minNumber);
+        Range<Integer> range = Range.closed(MinNumber, MaxNumber);
+        boolean isInRange = range.containsAll(numbers);
+        boolean isEqualGameCount = numbers.size() == GAME_NUMBER_COUNT;
+        return isEqualGameCount && isInRange;
     }
 }
