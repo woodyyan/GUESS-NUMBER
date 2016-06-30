@@ -9,13 +9,12 @@ public class GameResultTest {
     @Test
     public void should_return_4A0B_when_() {
         //given
-        GameResult result = new GameResult();
+        GameResult result = new GameResult(false, 4, 0);
 
         //when
-        result.setLocationCorrectCount(0);
-        result.setNumberCorrectCount(4);
+        String message = result.getMessage();
 
         //then
-        assertThat(result.getMessage(), is("4A0B"));
+        assertThat(message, is("4A0B"));
     }
 }

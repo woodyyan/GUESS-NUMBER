@@ -26,13 +26,8 @@ class Answer {
             if (isBCorrect) locationCorrectCount++;
         }
 
-        GameResult result = new GameResult();
-        result.setNumberCorrectCount(numberCorrectCount);
-        result.setLocationCorrectCount(locationCorrectCount);
-        if (numberCorrectCount == numbers.size()) {
-            result.setIsSuccessful(true);
-        }
+        boolean isSuccessful = numberCorrectCount == numbers.size();
 
-        return result;
+        return new GameResult(isSuccessful, numberCorrectCount, locationCorrectCount);
     }
 }
