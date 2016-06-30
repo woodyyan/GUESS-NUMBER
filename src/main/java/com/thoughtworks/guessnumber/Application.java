@@ -16,7 +16,6 @@ public class Application {
 
         String message = result.getIsSuccessful() ? "Game over, you win!" : "Game over, you lose!";
 
-        OutputConsole outputConsole = new OutputConsole();
-        outputConsole.println(message);
+        OutputConsole.getInstance().println(message);
     }
 }

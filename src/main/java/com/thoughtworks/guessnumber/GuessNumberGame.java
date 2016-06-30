@@ -23,31 +23,27 @@ class GuessNumberGame {
     }
 
     void start(Player player) {
-        OutputConsole outputConsole = new OutputConsole();
-
         for (int i = 0; i < maxAnswerCount; i++) {
-            if (playARound(player, outputConsole)) continue;
-            outputConsole.println(gameResult.getMessage());
+            Answer playerAnswer = player.guess();
+            if (!validator.verify(playerAnswer.getNumbers())) {
+                OutputConsole.getInstance().println("Guess number is not valid.");
+                continue;
+            }
+            gameResult = answer.compareTo(playerAnswer);
+            OutputConsole.getInstance().println(gameResult.getMessage());
             if (gameResult.getIsSuccessful()) {
                 break;
             }
         }
 
+        printGameAnswer();
+    }
+
+    private void printGameAnswer() {
         String answerString = "";
         for (Integer number : answer.getNumbers()) {
             answerString += number;
         }
-        outputConsole.println("Answer is: " + answerString);
-    }
-
-    private boolean playARound(Player player, OutputConsole outputConsole) {
-        Answer playerAnswer = player.guess();
-        if (!validator.verify(playerAnswer.getNumbers())) {
-            outputConsole.println("Guess number is not valid.");
-            return true;
-        }
-
-        gameResult = answer.compareTo(playerAnswer);
-        return false;
+        OutputConsole.getInstance().println("Answer is: " + answerString);
     }
 }
