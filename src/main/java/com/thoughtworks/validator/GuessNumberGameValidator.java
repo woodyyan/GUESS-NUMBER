@@ -2,6 +2,8 @@ package com.thoughtworks.validator;
 
 import com.google.common.collect.Range;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class GuessNumberGameValidator {
@@ -10,11 +12,11 @@ public class GuessNumberGameValidator {
     private final static int MaxNumber = 9;
     private final static int MinNumber = 0;
 
-    boolean verify(Set<Integer> numbers) {
-
+    public boolean verify(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
         Range<Integer> range = Range.closed(MinNumber, MaxNumber);
         boolean isInRange = range.containsAll(numbers);
-        boolean isEqualGameCount = numbers.size() == GAME_NUMBER_COUNT;
+        boolean isEqualGameCount = set.size() == GAME_NUMBER_COUNT;
         return isEqualGameCount && isInRange;
     }
 }

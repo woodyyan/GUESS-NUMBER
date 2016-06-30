@@ -1,46 +1,35 @@
 package com.thoughtworks.guessnumber;
 
-import com.google.common.collect.ImmutableCollection;
-import com.google.common.collect.Range;
-import com.google.common.collect.UnmodifiableIterator;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.List;
 
 class Answer {
-    private Integer[] numbers;
+    private List<Integer> numbers;
 
-    Integer[] getNumbers() {
+    List<Integer> getNumbers() {
         return numbers;
     }
 
-    Answer(Integer... numbers) {
+    Answer(List<Integer> numbers) {
         this.numbers = numbers;
     }
 
     GameResult compareTo(Answer anotherAnswer) {
-        GameResult result = new GameResult();
-
-
         int numberCorrectCount = 0;
         int locationCorrectCount = 0;
-        Integer[] anotherNumbers = anotherAnswer.getNumbers();
-        for (int i = 0; i < numbers.length; i++) {
-            if (numbers[i].equals(anotherNumbers[i])) {
-                numberCorrectCount++;
-            } else {
-                Integer number = numbers[i];
-                Integer answerNumber = anotherNumbers[i];
-                if (Arrays.stream(anotherNumbers).filter(f -> !f.equals(answerNumber)).anyMatch(number::equals)) {
-                    locationCorrectCount++;
-                }
-            }
+        List<Integer> anotherNumbers = anotherAnswer.getNumbers();
+
+        for (Integer number : anotherNumbers) {
+            boolean isACorrect = numbers.contains(number) && numbers.indexOf(number) == anotherNumbers.indexOf(number);
+            boolean isBCorrect = numbers.contains(number) && numbers.indexOf(number) != anotherNumbers.indexOf(number);
+
+            if (isACorrect) numberCorrectCount++;
+            if (isBCorrect) locationCorrectCount++;
         }
 
+        GameResult result = new GameResult();
         result.setNumberCorrectCount(numberCorrectCount);
         result.setLocationCorrectCount(locationCorrectCount);
-        if (numberCorrectCount == numbers.length) {
+        if (numberCorrectCount == numbers.size()) {
             result.setIsSuccessful(true);
         }
 

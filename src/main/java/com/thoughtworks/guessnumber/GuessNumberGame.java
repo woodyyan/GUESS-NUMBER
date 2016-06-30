@@ -22,10 +22,10 @@ class GuessNumberGame {
         GameResult result = new GameResult();
         for (int i = 0; i < maxAnswerCount; i++) {
             Answer playerAnswer = player.guess();
-//            if (!validator.verify(playerAnswer.getNumbers())) {
-//                outputConsole.println("Guess number is not valid.");
-//                continue;
-//            }
+            if (!validator.verify(playerAnswer.getNumbers())) {
+                outputConsole.println("Guess number is not valid.");
+                continue;
+            }
 
             result = answer.compareTo(playerAnswer);
             outputConsole.println(result.getMessage());

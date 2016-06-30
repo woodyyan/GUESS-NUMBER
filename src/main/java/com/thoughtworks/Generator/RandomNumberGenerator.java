@@ -1,11 +1,9 @@
 package com.thoughtworks.Generator;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class RandomNumberGenerator {
-    public Integer[] generate(int count) {
+    public List<Integer> generate(int count) {
         Random random = new Random();
         Integer maxNumber = 10;
         Set<Integer> numberSet = new HashSet<>();
@@ -14,6 +12,6 @@ public class RandomNumberGenerator {
             numberSet.add(index);
         }
 
-        return numberSet.toArray(new Integer[count]);
+        return new ArrayList<>(numberSet);
     }
 }
