@@ -1,14 +1,18 @@
 package com.thoughtworks.guessnumber;
 
+import com.thoughtworks.Generator.RandomNumberGenerator;
+import com.thoughtworks.validator.GuessNumberGameValidator;
+
 class GuessNumberGame {
-    private final int maxAnswerCount = 8;
+    private final static int maxAnswerCount = 8;
 
     private Answer answer;
     private GuessNumberGameValidator validator;
 
     GuessNumberGame() {
         validator = new GuessNumberGameValidator();
-        answer = new Answer(RandomNumberGenerator.generate(validator.getGameNumberCount()));
+        RandomNumberGenerator generator = new RandomNumberGenerator();
+        answer = new Answer(generator.generate(GuessNumberGameValidator.GAME_NUMBER_COUNT));
     }
 
     void start(Player player) {

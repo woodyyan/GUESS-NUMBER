@@ -1,4 +1,4 @@
-package com.thoughtworks.guessnumber;
+package com.thoughtworks.validator;
 
 import org.junit.Test;
 
