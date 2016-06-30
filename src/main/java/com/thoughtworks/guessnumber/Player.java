@@ -6,7 +6,6 @@ import java.util.*;
 
 class Player {
     Answer guess() {
-
         InputConsole console = new InputConsole();
         String numberString = console.getInputString();
 
