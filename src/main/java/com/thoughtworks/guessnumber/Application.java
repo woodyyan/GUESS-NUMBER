@@ -5,6 +5,8 @@ import com.google.inject.Injector;
 import com.thoughtworks.module.GameModule;
 import com.thoughtworks.output.OutputConsole;
 
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
 
@@ -28,10 +30,12 @@ public class Application {
     }
 
     private static void printGameResult(GameResult result, Answer answer) {
+        List<Integer> numbers = answer.getNumbers();
         String answerString = "";
-        for (Integer number : answer.getNumbers()) {
-            answerString += number;
+        for (Integer number : numbers) {
+            answerString += number.toString();
         }
+
         String message = result.getIsSuccessful() ? "Game over, you win!" : "Game over, you lose! Answer is: " + answerString;
 
         OutputConsole.getInstance().println(message);
