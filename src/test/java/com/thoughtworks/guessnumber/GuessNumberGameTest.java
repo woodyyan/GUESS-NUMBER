@@ -1,5 +1,6 @@
 package com.thoughtworks.guessnumber;
 
+import com.thoughtworks.validator.GuessNumberGameValidator;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -18,10 +19,12 @@ public class GuessNumberGameTest {
         when(player.guess()).thenReturn(answer);
 
         //when
-        GuessNumberGame game = new GuessNumberGame();
-        game.start(player);
+        Answer gameAnswer = new Answer(Arrays.asList(1, 2, 3, 5));
+        GuessNumberGameValidator validator = new GuessNumberGameValidator();
+        GuessNumberGame game = new GuessNumberGame(validator, gameAnswer);
+        GameResult result = game.play(player.guess());
 
         //then
-        assertThat(game.getGameResult().getIsSuccessful(), is(false));
+        assertThat(result.getIsSuccessful(), is(false));
     }
 }
