@@ -15,6 +15,7 @@ class GuessNumberGame {
     GameResult play(Answer playerAnswer) {
         if (!validator.verify(playerAnswer.getNumbers())) {
             OutputConsole.getInstance().println("Guess number is not valid.");
+            return null;
         }
 
         return answer.compareTo(playerAnswer);

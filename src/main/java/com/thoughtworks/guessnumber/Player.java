@@ -5,8 +5,7 @@ import com.thoughtworks.input.InputConsole;
 import java.util.*;
 
 class Player {
-    Answer guess() {
-        InputConsole console = new InputConsole();
+    Answer guess(InputConsole console) {
         String numberString = console.getInputString();
 
         List<Integer> numbers = parseInputToSet(numberString);
